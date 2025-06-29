@@ -1,1 +1,8 @@
+com/duelscripts/CombatResolver.class
 com/duelscripts/Main.class
+com/duelscripts/BodyPart.class
+com/duelscripts/CombatResolver$TurnResult.class
+com/duelscripts/Game.class
+com/duelscripts/Action.class
+com/duelscripts/Weapon.class
+com/duelscripts/Fighter.class

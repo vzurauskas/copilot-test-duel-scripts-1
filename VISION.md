@@ -9,7 +9,7 @@ Duel Scripts is a turn-based game where two fighters face off in a series of dis
 
 If a strike lands on a body part that the defender parries, the attack is completely deflected and deals no damage.
 
-## Fighter Attributes
+### Fighter Attributes
 - **Name**
 - **Hit Points**
 - **Strength**

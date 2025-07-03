@@ -1,5 +1,7 @@
+com/duelscripts/BattleResult.class
 com/duelscripts/CombatResolver.class
 com/duelscripts/Main.class
+com/duelscripts/BattleStats.class
 com/duelscripts/BodyPart.class
 com/duelscripts/CombatResolver$TurnResult.class
 com/duelscripts/Game.class

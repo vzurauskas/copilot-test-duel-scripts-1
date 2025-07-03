@@ -1,6 +1,8 @@
+com/duelscripts/BattleResultTest.class
 com/duelscripts/BodyPartTest.class
 com/duelscripts/FighterTest.class
 com/duelscripts/WeaponTest.class
+com/duelscripts/BattleStatsTest.class
 com/duelscripts/CombatResolverTest.class
 com/duelscripts/MainTest.class
 com/duelscripts/WeaponTest$1.class

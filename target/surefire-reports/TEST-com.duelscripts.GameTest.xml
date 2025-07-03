@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.duelscripts.GameTest" time="0.023" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.duelscripts.GameTest" time="0.05" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -11,7 +11,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/21.0.7-ms/lib"/>
-    <property name="sun.java.command" value="/workspaces/cpw-test-duel-scripts-1/target/surefire/surefirebooter-20250629184638839_3.jar /workspaces/cpw-test-duel-scripts-1/target/surefire 2025-06-29T18-46-38_731-jvmRun1 surefire-20250629184638839_1tmp surefire_0-20250629184638839_2tmp"/>
+    <property name="sun.java.command" value="/workspaces/cpw-test-duel-scripts-1/target/surefire/surefirebooter-20250703194557953_3.jar /workspaces/cpw-test-duel-scripts-1/target/surefire 2025-07-03T19-45-57_849-jvmRun1 surefire-20250703194557953_1tmp surefire_0-20250703194557953_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/workspaces/cpw-test-duel-scripts-1/target/test-classes:/workspaces/cpw-test-duel-scripts-1/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -26,7 +26,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/workspaces/cpw-test-duel-scripts-1/target/surefire/surefirebooter-20250629184638839_3.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/cpw-test-duel-scripts-1/target/surefire/surefirebooter-20250703194557953_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.7+6-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -53,9 +53,156 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testGameCreation" classname="com.duelscripts.GameTest" time="0.005"/>
-  <testcase name="testExecuteTurn" classname="com.duelscripts.GameTest" time="0.004"/>
-  <testcase name="testIsGameOverAndGetWinner" classname="com.duelscripts.GameTest" time="0.005"/>
-  <testcase name="testGameNotOverWhenBothAlive" classname="com.duelscripts.GameTest" time="0.001"/>
-  <testcase name="testBothFightersDefeated" classname="com.duelscripts.GameTest" time="0.001"/>
+  <testcase name="testBattleResultGetters" classname="com.duelscripts.GameTest" time="0.015">
+    <system-out><![CDATA[
+BATTLE SETUP:
+============================================================
+Alice (HP: 20/20, Str: 5, Weapon: Test Weapon)
+    VS
+Bob (HP: 20/20, Str: 5, Weapon: Test Weapon)
+
+TURN 1:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 0/20 HP
+Bob: 0/20 HP
+
+
+BATTLE COMPLETE!
+============================================================
+DRAW! Both fighters have fallen!
+
+Battle Statistics:
+- Fighter 1: 23 damage dealt, 1 successful strikes, 0 critical hits
+- Fighter 2: 23 damage dealt, 1 successful strikes, 0 critical hits
+- Average damage per turn: 46.0
+]]></system-out>
+  </testcase>
+  <testcase name="testGameCreation" classname="com.duelscripts.GameTest" time="0.001"/>
+  <testcase name="testExecuteTurn" classname="com.duelscripts.GameTest" time="0.003"/>
+  <testcase name="testIsGameOverAndGetWinner" classname="com.duelscripts.GameTest" time="0.004"/>
+  <testcase name="testGameMaxTurnsGetter" classname="com.duelscripts.GameTest" time="0.001"/>
+  <testcase name="testGameNotOverWhenBothAlive" classname="com.duelscripts.GameTest" time="0"/>
+  <testcase name="testRunFullCombat" classname="com.duelscripts.GameTest" time="0.006">
+    <system-out><![CDATA[
+BATTLE SETUP:
+============================================================
+Alice (HP: 30/30, Str: 5, Weapon: Test Weapon)
+    VS
+Bob (HP: 30/30, Str: 5, Weapon: Test Weapon)
+
+TURN 1:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 7/30 HP
+Bob: 7/30 HP
+
+TURN 2:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 0/30 HP
+Bob: 0/30 HP
+
+
+BATTLE COMPLETE!
+============================================================
+DRAW! Both fighters have fallen!
+
+Battle Statistics:
+- Fighter 1: 46 damage dealt, 2 successful strikes, 0 critical hits
+- Fighter 2: 46 damage dealt, 2 successful strikes, 0 critical hits
+- Average damage per turn: 46.0
+]]></system-out>
+  </testcase>
+  <testcase name="testRunFullCombatWithTurnLimit" classname="com.duelscripts.GameTest" time="0.002">
+    <system-out><![CDATA[
+BATTLE SETUP:
+============================================================
+Alice (HP: 100/100, Str: 5, Weapon: Test Weapon)
+    VS
+Bob (HP: 100/100, Str: 5, Weapon: Test Weapon)
+
+TURN 1:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 77/100 HP
+Bob: 77/100 HP
+
+TURN 2:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 54/100 HP
+Bob: 54/100 HP
+
+TURN 3:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 31/100 HP
+Bob: 31/100 HP
+
+TURN 4:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 23 damage!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 8/100 HP
+Bob: 8/100 HP
+
+TURN 5:
+----------------------------------------
+Alice: Strike: HEAD, Parry: TORSO
+Bob: Strike: HEAD, Parry: TORSO
+
+Alice strikes Bob's head for 45 damage (CRITICAL HIT)!
+Bob strikes Alice's head for 23 damage!
+
+Alice: 0/100 HP
+Bob: 0/100 HP
+
+
+BATTLE COMPLETE!
+============================================================
+BATTLE TIMEOUT! No winner after 5 turns.
+
+Battle Statistics:
+- Fighter 1: 137 damage dealt, 5 successful strikes, 0 critical hits
+- Fighter 2: 115 damage dealt, 5 successful strikes, 1 critical hits
+- Average damage per turn: 50.4
+]]></system-out>
+  </testcase>
+  <testcase name="testGameConstructors" classname="com.duelscripts.GameTest" time="0.001"/>
+  <testcase name="testBothFightersDefeated" classname="com.duelscripts.GameTest" time="0"/>
 </testsuite>

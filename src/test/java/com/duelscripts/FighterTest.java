@@ -61,11 +61,11 @@ public class FighterTest {
     @Test
     public void testToString() {
         Fighter fighter = createTestFighter();
-        String expected = "Test Fighter (HP: 50/50, Str: 8, Weapon: Test Sword)";
+        String expected = "Test Fighter (HP: 50/50, Str: 8, Weapon: Test Sword, Script: Random)";
         assertEquals(expected, fighter.toString());
         
         fighter.takeDamage(20);
-        String expectedAfterDamage = "Test Fighter (HP: 30/50, Str: 8, Weapon: Test Sword)";
+        String expectedAfterDamage = "Test Fighter (HP: 30/50, Str: 8, Weapon: Test Sword, Script: Random)";
         assertEquals(expectedAfterDamage, fighter.toString());
     }
 }

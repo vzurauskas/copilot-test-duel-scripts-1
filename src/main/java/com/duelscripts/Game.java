@@ -11,6 +11,8 @@ public class Game {
     private final Fighter fighter2;
     private final int maxTurns;
     private final boolean enableTurnDelay;
+    private final List<CombatResolver.TurnResult> battleHistory;
+    private int currentTurn;
     
     public Game(Fighter fighter1, Fighter fighter2) {
         this(fighter1, fighter2, 50, false); // Default max 50 turns, no delay
@@ -21,6 +23,8 @@ public class Game {
         this.fighter2 = fighter2;
         this.maxTurns = maxTurns;
         this.enableTurnDelay = enableTurnDelay;
+        this.battleHistory = new ArrayList<>();
+        this.currentTurn = 1;
     }
     
     /**
@@ -28,20 +32,21 @@ public class Game {
      * @return The complete battle result
      */
     public BattleResult runFullCombat() {
-        List<CombatResolver.TurnResult> turnHistory = new ArrayList<>();
+        // Reset battle state
+        battleHistory.clear();
+        currentTurn = 1;
         
         displayBattleStart();
         
-        int turnNumber = 1;
-        while (!isGameOver() && turnNumber <= maxTurns) {
-            displayTurnHeader(turnNumber);
+        while (!isGameOver() && currentTurn <= maxTurns) {
+            displayTurnHeader(currentTurn);
             
             CombatResolver.TurnResult turnResult = executeTurn();
-            turnHistory.add(turnResult);
+            battleHistory.add(turnResult);
             
             System.out.println(turnResult.getDescription());
             
-            if (enableTurnDelay && !isGameOver() && turnNumber < maxTurns) {
+            if (enableTurnDelay && !isGameOver() && currentTurn < maxTurns) {
                 try {
                     Thread.sleep(1000); // 1 second delay between turns
                 } catch (InterruptedException e) {
@@ -50,15 +55,15 @@ public class Game {
                 }
             }
             
-            turnNumber++;
+            currentTurn++;
         }
         
-        boolean reachedTurnLimit = turnNumber > maxTurns;
+        boolean reachedTurnLimit = currentTurn > maxTurns;
         Fighter winner = reachedTurnLimit ? null : getWinner();
-        BattleStats stats = generateBattleStatistics(turnHistory);
-        String summary = generateBattleSummary(winner, turnNumber - 1, reachedTurnLimit, stats);
+        BattleStats stats = generateBattleStatistics(battleHistory);
+        String summary = generateBattleSummary(winner, currentTurn - 1, reachedTurnLimit, stats);
         
-        BattleResult result = new BattleResult(winner, turnNumber - 1, turnHistory, stats, summary, reachedTurnLimit);
+        BattleResult result = new BattleResult(winner, currentTurn - 1, battleHistory, stats, summary, reachedTurnLimit);
         displayBattleEnd(result);
         
         return result;
@@ -162,8 +167,25 @@ public class Game {
      * @return The result of the turn
      */
     public CombatResolver.TurnResult executeTurn() {
-        Action action1 = fighter1.getAction();
-        Action action2 = fighter2.getAction();
+        // Create context for each fighter
+        FighterContext context1 = new FighterContext(fighter1, fighter2, currentTurn, battleHistory);
+        FighterContext context2 = new FighterContext(fighter2, fighter1, currentTurn, battleHistory);
+        
+        // Get actions using context (for script-aware fighters) or fallback to no-context method
+        Action action1, action2;
+        try {
+            action1 = fighter1.getAction(context1);
+        } catch (Exception e) {
+            // Fallback to backward-compatible method
+            action1 = fighter1.getAction();
+        }
+        
+        try {
+            action2 = fighter2.getAction(context2);
+        } catch (Exception e) {
+            // Fallback to backward-compatible method
+            action2 = fighter2.getAction();
+        }
         
         return CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
     }

@@ -14,26 +14,54 @@ public class Main {
         Weapon sword = new Weapon("Iron Sword", 10, 0.15);
         Weapon axe = new Weapon("Battle Axe", 12, 0.10);
         
-        // Create fighters
-        Fighter knight = new Fighter("Sir Galahad", 50, 8, sword);
-        Fighter barbarian = new Fighter("Conan", 55, 6, axe);
+        // Demonstrate different combat scripts
+        demonstrateScriptBattle("Aggressive vs Defensive", 
+                               new AggressiveScript(), new DefensiveScript(), 
+                               sword, axe);
         
-        // Create and run a complete battle
-        Game game = new Game(knight, barbarian);
+        demonstrateScriptBattle("Balanced vs Tactical", 
+                               new BalancedScript(), new TacticalScript(), 
+                               sword, axe);
+        
+        demonstrateScriptBattle("Adaptive vs Berserker", 
+                               new AdaptiveScript(), new BerserkerScript(), 
+                               sword, axe);
+    }
+    
+    private static void demonstrateScriptBattle(String battleName, 
+                                               CombatScript script1, CombatScript script2,
+                                               Weapon weapon1, Weapon weapon2) {
+        System.out.println("\n" + "=".repeat(60));
+        System.out.println("DEMONSTRATION: " + battleName);
+        System.out.println("=".repeat(60));
+        
+        // Create fighters with specific scripts
+        Fighter fighter1 = new Fighter("Warrior A", 45, 7, weapon1, script1);
+        Fighter fighter2 = new Fighter("Warrior B", 45, 7, weapon2, script2);
+        
+        System.out.println("Fighter 1: " + fighter1);
+        System.out.println("Script: " + script1.getDescription());
+        System.out.println();
+        System.out.println("Fighter 2: " + fighter2);
+        System.out.println("Script: " + script2.getDescription());
+        System.out.println();
+        
+        // Run the battle
+        Game game = new Game(fighter1, fighter2, 10, false); // Max 10 turns for demo
         BattleResult result = game.runFullCombat();
         
-        // Display additional battle information
-        System.out.println("\nBATTLE ANALYSIS:");
-        System.out.println("=".repeat(60));
-        System.out.println("Total turns: " + result.getTotalTurns());
-        System.out.println("Winner: " + (result.getWinner() != null ? result.getWinner().getName() : "None"));
-        System.out.println("Turn limit reached: " + result.reachedTurnLimit());
-        System.out.println("Turn history count: " + result.getTurnHistory().size());
-        
-        // Display final fighter states
-        System.out.println("\nFINAL FIGHTER STATES:");
+        // Show script effectiveness
+        System.out.println("\nSCRIPT ANALYSIS:");
         System.out.println("-".repeat(40));
-        System.out.println(knight.getName() + " - HP: " + knight.getHitPoints() + "/" + knight.getMaxHitPoints());
-        System.out.println(barbarian.getName() + " - HP: " + barbarian.getHitPoints() + "/" + barbarian.getMaxHitPoints());
+        if (result.getWinner() != null) {
+            System.out.println("Winning Script: " + result.getWinner().getCombatScript().getName());
+        } else {
+            System.out.println("Result: Draw/Timeout");
+        }
+        System.out.println("Battle Duration: " + result.getTotalTurns() + " turns");
+        
+        BattleStats stats = result.getStatistics();
+        System.out.println("Damage Ratio: " + stats.getTotalDamageByFighter1() + 
+                          " vs " + stats.getTotalDamageByFighter2());
     }
 }

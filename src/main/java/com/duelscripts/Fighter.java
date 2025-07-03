@@ -9,22 +9,62 @@ public class Fighter {
     private final int maxHitPoints;
     private final int strength;
     private final Weapon weapon;
+    private CombatScript combatScript;
     
     public Fighter(String name, int hitPoints, int strength, Weapon weapon) {
+        this(name, hitPoints, strength, weapon, ScriptFactory.getDefaultScript());
+    }
+    
+    public Fighter(String name, int hitPoints, int strength, Weapon weapon, CombatScript combatScript) {
         this.name = name;
         this.hitPoints = hitPoints;
         this.maxHitPoints = hitPoints;
         this.strength = strength;
         this.weapon = weapon;
+        this.combatScript = combatScript;
     }
     
     /**
-     * For this first iteration, fighters use hardcoded actions.
-     * This will be replaced with scripts in future iterations.
+     * Gets the next action for this fighter using their combat script.
+     * @param context The current battle context
+     * @return The action to take this turn
+     */
+    public Action getAction(FighterContext context) {
+        return combatScript.getNextAction(context);
+    }
+    
+    /**
+     * For backward compatibility - generates a random action.
+     * This maintains the old behavior for existing code.
      */
     public Action getAction() {
+        return generateRandomAction();
+    }
+    
+    /**
+     * Generates a random action (used by RandomScript and for backward compatibility).
+     * @return A random action
+     */
+    public Action generateRandomAction() {
         // Simple hardcoded strategy: strike head, parry torso
+        // This maintains the current behavior
         return new Action(BodyPart.HEAD, BodyPart.TORSO);
+    }
+    
+    /**
+     * Sets a new combat script for this fighter.
+     * @param combatScript The new script to use
+     */
+    public void setCombatScript(CombatScript combatScript) {
+        this.combatScript = combatScript;
+    }
+    
+    /**
+     * Gets the current combat script.
+     * @return The current combat script
+     */
+    public CombatScript getCombatScript() {
+        return combatScript;
     }
     
     /**
@@ -65,7 +105,7 @@ public class Fighter {
     
     @Override
     public String toString() {
-        return String.format("%s (HP: %d/%d, Str: %d, Weapon: %s)", 
-                           name, hitPoints, maxHitPoints, strength, weapon.getName());
+        return String.format("%s (HP: %d/%d, Str: %d, Weapon: %s, Script: %s)", 
+                           name, hitPoints, maxHitPoints, strength, weapon.getName(), combatScript.getName());
     }
 }

@@ -1,4 +1,10 @@
-package com.duelscripts;
+package com.duelscripts.scripting.scripts;
+
+import com.duelscripts.core.Action;
+import com.duelscripts.core.BodyPart;
+import com.duelscripts.scripting.CombatScript;
+import com.duelscripts.scripting.FighterContext;
+import com.duelscripts.combat.TurnResult;
 
 /**
  * A balanced combat script that mixes offensive and defensive strategies.
@@ -27,7 +33,7 @@ public class BalancedScript implements CombatScript {
         
         // Use battle history for tactical decisions
         if (!context.isFirstTurn()) {
-            CombatResolver.TurnResult lastTurn = context.getLastTurnResult();
+            TurnResult lastTurn = context.getLastTurnResult();
             if (lastTurn != null) {
                 // Balanced approach: use damage patterns to adjust strategy
                 // If we took more damage last turn, be more defensive

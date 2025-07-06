@@ -1,4 +1,6 @@
-package com.duelscripts;
+package com.duelscripts.combat;
+
+import com.duelscripts.core.Fighter;
 
 import java.util.List;
 
@@ -8,12 +10,12 @@ import java.util.List;
 public class BattleResult {
     private final Fighter winner;
     private final int totalTurns;
-    private final List<CombatResolver.TurnResult> turnHistory;
+    private final List<TurnResult> turnHistory;
     private final BattleStats statistics;
     private final String battleSummary;
     private final boolean reachedTurnLimit;
     
-    public BattleResult(Fighter winner, int totalTurns, List<CombatResolver.TurnResult> turnHistory,
+    public BattleResult(Fighter winner, int totalTurns, List<TurnResult> turnHistory,
                        BattleStats statistics, String battleSummary, boolean reachedTurnLimit) {
         this.winner = winner;
         this.totalTurns = totalTurns;
@@ -40,7 +42,7 @@ public class BattleResult {
     /**
      * Gets a copy of the turn-by-turn battle history.
      */
-    public List<CombatResolver.TurnResult> getTurnHistory() {
+    public List<TurnResult> getTurnHistory() {
         return turnHistory;
     }
     

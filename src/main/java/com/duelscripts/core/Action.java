@@ -1,4 +1,4 @@
-package com.duelscripts;
+package com.duelscripts.core;
 
 /**
  * Represents a fighter's action for a single turn.

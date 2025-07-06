@@ -1,4 +1,4 @@
-package com.duelscripts;
+package com.duelscripts.core;
 
 /**
  * Represents the different body parts that can be targeted in combat.

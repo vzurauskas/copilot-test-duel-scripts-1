@@ -1,4 +1,10 @@
-package com.duelscripts;
+package com.duelscripts.scripting.scripts;
+
+import com.duelscripts.core.Action;
+import com.duelscripts.core.BodyPart;
+import com.duelscripts.scripting.CombatScript;
+import com.duelscripts.scripting.FighterContext;
+import com.duelscripts.combat.TurnResult;
 
 /**
  * A tactical combat script that uses complex decision trees and strategic analysis.
@@ -104,7 +110,7 @@ public class TacticalScript implements CombatScript {
     private Action balancedStrategy(FighterContext context) {
         // Use pattern analysis if available
         if (!context.isFirstTurn()) {
-            CombatResolver.TurnResult lastTurn = context.getLastTurnResult();
+            TurnResult lastTurn = context.getLastTurnResult();
             if (lastTurn != null) {
                 // Tactical decision based on previous turn
                 return tacticalCounterMove(lastTurn, context);
@@ -115,7 +121,7 @@ public class TacticalScript implements CombatScript {
         return new Action(BodyPart.TORSO, BodyPart.TORSO);
     }
     
-    private Action tacticalCounterMove(CombatResolver.TurnResult lastTurn, FighterContext context) {
+    private Action tacticalCounterMove(TurnResult lastTurn, FighterContext context) {
         // Since we don't have access to opponent actions in TurnResult,
         // we'll use damage information to make tactical decisions
         

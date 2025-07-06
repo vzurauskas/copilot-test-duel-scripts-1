@@ -1,4 +1,9 @@
-package com.duelscripts;
+package com.duelscripts.combat;
+
+import com.duelscripts.core.Action;
+import com.duelscripts.core.BodyPart;
+import com.duelscripts.core.Fighter;
+import com.duelscripts.core.Weapon;
 
 /**
  * Resolves combat between two fighters for a single turn.
@@ -8,29 +13,6 @@ public class CombatResolver {
     /**
      * Represents the result of a turn of combat.
      */
-    public static class TurnResult {
-        private final String description;
-        private final int fighter1Damage;
-        private final int fighter2Damage;
-        private final boolean fighter1CriticalHit;
-        private final boolean fighter2CriticalHit;
-        
-        public TurnResult(String description, int fighter1Damage, int fighter2Damage, 
-                         boolean fighter1CriticalHit, boolean fighter2CriticalHit) {
-            this.description = description;
-            this.fighter1Damage = fighter1Damage;
-            this.fighter2Damage = fighter2Damage;
-            this.fighter1CriticalHit = fighter1CriticalHit;
-            this.fighter2CriticalHit = fighter2CriticalHit;
-        }
-        
-        public String getDescription() { return description; }
-        public int getFighter1Damage() { return fighter1Damage; }
-        public int getFighter2Damage() { return fighter2Damage; }
-        public boolean isFighter1CriticalHit() { return fighter1CriticalHit; }
-        public boolean isFighter2CriticalHit() { return fighter2CriticalHit; }
-    }
-    
     /**
      * Resolves one turn of combat between two fighters.
      * @param fighter1 The first fighter

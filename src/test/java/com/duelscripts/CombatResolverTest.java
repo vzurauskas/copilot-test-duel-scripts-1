@@ -40,7 +40,7 @@ public class CombatResolverTest {
         int alice_initial_hp = fighter1.getHitPoints();
         int bob_initial_hp = fighter2.getHitPoints();
         
-        CombatResolver.TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
+        TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
         
         // Wait, I think I'm confusing myself. Let me think:
         // Alice strikes HEAD, Bob parries HEAD -> Alice's strike is parried
@@ -75,7 +75,7 @@ public class CombatResolverTest {
         int alice_initial_hp = fighter1.getHitPoints();
         int bob_initial_hp = fighter2.getHitPoints();
         
-        CombatResolver.TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
+        TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
         
         // Check that neither fighter took damage
         assertEquals(alice_initial_hp, fighter1.getHitPoints());
@@ -101,7 +101,7 @@ public class CombatResolverTest {
         int alice_initial_hp = fighter1.getHitPoints();
         int bob_initial_hp = fighter2.getHitPoints();
         
-        CombatResolver.TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
+        TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
         
         // Alice should take no damage (Bob's strike parried)
         // Bob should take damage (Alice's strike lands)
@@ -120,7 +120,7 @@ public class CombatResolverTest {
         Action action1 = new Action(BodyPart.HEAD, BodyPart.TORSO);
         Action action2 = new Action(BodyPart.LEGS, BodyPart.HEAD);
         
-        CombatResolver.TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
+        TurnResult result = CombatResolver.resolveTurn(fighter1, action1, fighter2, action2);
         
         String description = result.getDescription();
         

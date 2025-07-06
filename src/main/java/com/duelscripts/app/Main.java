@@ -1,4 +1,13 @@
-package com.duelscripts;
+package com.duelscripts.app;
+
+import com.duelscripts.core.Fighter;
+import com.duelscripts.core.Weapon;
+import com.duelscripts.combat.Game;
+import com.duelscripts.combat.BattleResult;
+import com.duelscripts.combat.BattleStats;
+import com.duelscripts.scripting.ScriptFactory;
+import com.duelscripts.scripting.CombatScript;
+import com.duelscripts.scripting.scripts.*;
 
 /**
  * Main class for the Duel Scripts game.

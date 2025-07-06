@@ -1,4 +1,6 @@
-package com.duelscripts;
+package com.duelscripts.scripting;
+
+import com.duelscripts.scripting.scripts.*;
 
 import java.util.Arrays;
 import java.util.List;

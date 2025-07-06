@@ -17,7 +17,7 @@ public class BattleResultTest {
         Fighter winner = createTestFighter("Alice", 30);
         Fighter loser = createTestFighter("Bob", 0);
         
-        List<CombatResolver.TurnResult> turnHistory = new ArrayList<>();
+        List<TurnResult> turnHistory = new ArrayList<>();
         BattleStats stats = new BattleStats(25, 15, 3, 2, 1, 0, 10.0);
         String summary = "Alice wins!";
         
@@ -36,7 +36,7 @@ public class BattleResultTest {
         Fighter fighter1 = createTestFighter("Alice", 20);
         Fighter fighter2 = createTestFighter("Bob", 25);
         
-        List<CombatResolver.TurnResult> turnHistory = new ArrayList<>();
+        List<TurnResult> turnHistory = new ArrayList<>();
         BattleStats stats = new BattleStats(10, 8, 2, 1, 0, 0, 3.6);
         String summary = "Battle timeout!";
         
@@ -55,7 +55,7 @@ public class BattleResultTest {
         Fighter fighter1 = createTestFighter("Alice", 0);
         Fighter fighter2 = createTestFighter("Bob", 0);
         
-        List<CombatResolver.TurnResult> turnHistory = new ArrayList<>();
+        List<TurnResult> turnHistory = new ArrayList<>();
         BattleStats stats = new BattleStats(30, 35, 4, 5, 2, 1, 21.7);
         String summary = "Both fighters have fallen!";
         
@@ -72,7 +72,7 @@ public class BattleResultTest {
     @Test
     public void testBattleResultEmptyTurnHistory() {
         Fighter winner = createTestFighter("Alice", 50);
-        List<CombatResolver.TurnResult> emptyHistory = new ArrayList<>();
+        List<TurnResult> emptyHistory = new ArrayList<>();
         BattleStats stats = new BattleStats(0, 0, 0, 0, 0, 0, 0.0);
         String summary = "Instant victory!";
         
@@ -89,7 +89,7 @@ public class BattleResultTest {
     @Test
     public void testBattleResultGetters() {
         Fighter winner = createTestFighter("TestFighter", 1);
-        List<CombatResolver.TurnResult> turnHistory = new ArrayList<>();
+        List<TurnResult> turnHistory = new ArrayList<>();
         BattleStats stats = new BattleStats(5, 3, 1, 1, 0, 0, 2.7);
         String summary = "Test summary";
         

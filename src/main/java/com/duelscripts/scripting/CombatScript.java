@@ -1,4 +1,6 @@
-package com.duelscripts;
+package com.duelscripts.scripting;
+
+import com.duelscripts.core.Action;
 
 /**
  * Interface for combat scripts that define fighter behavior strategies.

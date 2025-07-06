@@ -1,4 +1,4 @@
-package com.duelscripts;
+package com.duelscripts.combat;
 
 /**
  * Tracks statistics for a complete battle between two fighters.

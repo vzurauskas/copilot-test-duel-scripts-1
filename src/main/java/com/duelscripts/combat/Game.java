@@ -1,4 +1,8 @@
-package com.duelscripts;
+package com.duelscripts.combat;
+
+import com.duelscripts.core.Action;
+import com.duelscripts.core.Fighter;
+import com.duelscripts.scripting.FighterContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,7 @@ public class Game {
     private final Fighter fighter2;
     private final int maxTurns;
     private final boolean enableTurnDelay;
-    private final List<CombatResolver.TurnResult> battleHistory;
+    private final List<TurnResult> battleHistory;
     private int currentTurn;
     
     public Game(Fighter fighter1, Fighter fighter2) {
@@ -41,7 +45,7 @@ public class Game {
         while (!isGameOver() && currentTurn <= maxTurns) {
             displayTurnHeader(currentTurn);
             
-            CombatResolver.TurnResult turnResult = executeTurn();
+            TurnResult turnResult = executeTurn();
             battleHistory.add(turnResult);
             
             System.out.println(turnResult.getDescription());
@@ -103,7 +107,7 @@ public class Game {
     /**
      * Generates battle statistics from the turn history.
      */
-    private BattleStats generateBattleStatistics(List<CombatResolver.TurnResult> turnHistory) {
+    private BattleStats generateBattleStatistics(List<TurnResult> turnHistory) {
         int totalDamageByFighter1 = 0;
         int totalDamageByFighter2 = 0;
         int successfulStrikesByFighter1 = 0;
@@ -111,7 +115,7 @@ public class Game {
         int criticalHitsByFighter1 = 0;
         int criticalHitsByFighter2 = 0;
         
-        for (CombatResolver.TurnResult turn : turnHistory) {
+        for (TurnResult turn : turnHistory) {
             // Fighter1 damage dealt to Fighter2
             totalDamageByFighter1 += turn.getFighter2Damage();
             if (turn.getFighter2Damage() > 0) {
@@ -166,7 +170,7 @@ public class Game {
      * Executes one turn of combat between the two fighters.
      * @return The result of the turn
      */
-    public CombatResolver.TurnResult executeTurn() {
+    public TurnResult executeTurn() {
         // Create context for each fighter
         FighterContext context1 = new FighterContext(fighter1, fighter2, currentTurn, battleHistory);
         FighterContext context2 = new FighterContext(fighter2, fighter1, currentTurn, battleHistory);

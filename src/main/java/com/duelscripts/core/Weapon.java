@@ -1,4 +1,4 @@
-package com.duelscripts;
+package com.duelscripts.core;
 
 import java.util.Random;
 

@@ -1,4 +1,7 @@
-package com.duelscripts;
+package com.duelscripts.scripting;
+
+import com.duelscripts.core.Fighter;
+import com.duelscripts.combat.TurnResult;
 
 import java.util.List;
 
@@ -10,10 +13,10 @@ public class FighterContext {
     private final Fighter self;
     private final Fighter opponent;
     private final int currentTurn;
-    private final List<CombatResolver.TurnResult> battleHistory;
+    private final List<TurnResult> battleHistory;
     
     public FighterContext(Fighter self, Fighter opponent, int currentTurn, 
-                         List<CombatResolver.TurnResult> battleHistory) {
+                         List<TurnResult> battleHistory) {
         this.self = self;
         this.opponent = opponent;
         this.currentTurn = currentTurn;
@@ -48,7 +51,7 @@ public class FighterContext {
      * Gets the battle history up to this point.
      * @return An immutable list of all previous turn results
      */
-    public List<CombatResolver.TurnResult> getBattleHistory() {
+    public List<TurnResult> getBattleHistory() {
         return battleHistory;
     }
     
@@ -56,7 +59,7 @@ public class FighterContext {
      * Gets the most recent turn result, if any.
      * @return The last turn result, or null if this is the first turn
      */
-    public CombatResolver.TurnResult getLastTurnResult() {
+    public TurnResult getLastTurnResult() {
         if (battleHistory.isEmpty()) {
             return null;
         }

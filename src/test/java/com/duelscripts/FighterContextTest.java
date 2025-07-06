@@ -62,8 +62,8 @@ public class FighterContextTest {
         assertNull(contextEmpty.getLastTurnResult());
         
         // With history
-        var history = new ArrayList<CombatResolver.TurnResult>();
-        CombatResolver.TurnResult turnResult = new CombatResolver.TurnResult("Test turn", 5, 10, false, true);
+        var history = new ArrayList<TurnResult>();
+        TurnResult turnResult = new TurnResult("Test turn", 5, 10, false, true);
         history.add(turnResult);
         
         FighterContext contextWithHistory = new FighterContext(fighter1, fighter2, 2, history);
@@ -75,8 +75,8 @@ public class FighterContextTest {
         Fighter fighter1 = createTestFighter("Alice", 50);
         Fighter fighter2 = createTestFighter("Bob", 50);
         
-        var originalHistory = new ArrayList<CombatResolver.TurnResult>();
-        CombatResolver.TurnResult turnResult = new CombatResolver.TurnResult("Test turn", 5, 10, false, true);
+        var originalHistory = new ArrayList<TurnResult>();
+        TurnResult turnResult = new TurnResult("Test turn", 5, 10, false, true);
         originalHistory.add(turnResult);
         
         FighterContext context = new FighterContext(fighter1, fighter2, 2, originalHistory);
@@ -84,7 +84,7 @@ public class FighterContextTest {
         // Try to modify the returned history - should not affect the context
         var returnedHistory = context.getBattleHistory();
         assertThrows(UnsupportedOperationException.class, () -> {
-            returnedHistory.add(new CombatResolver.TurnResult("New turn", 0, 0, false, false));
+            returnedHistory.add(new TurnResult("New turn", 0, 0, false, false));
         });
     }
 }

@@ -27,7 +27,7 @@ public class GameTest {
         Fighter fighter2 = createTestFighter("Bob", 50);
         Game game = new Game(fighter1, fighter2);
         
-        CombatResolver.TurnResult result = game.executeTurn();
+        TurnResult result = game.executeTurn();
         
         assertNotNull(result);
         assertNotNull(result.getDescription());

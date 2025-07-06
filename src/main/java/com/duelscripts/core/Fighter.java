@@ -1,4 +1,8 @@
-package com.duelscripts;
+package com.duelscripts.core;
+
+import com.duelscripts.scripting.CombatScript;
+import com.duelscripts.scripting.ScriptFactory;
+import com.duelscripts.scripting.FighterContext;
 
 /**
  * Represents a fighter in the duel.

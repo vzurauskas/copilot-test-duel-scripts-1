@@ -1,4 +1,9 @@
-package com.duelscripts;
+package com.duelscripts.scripting.scripts;
+
+import com.duelscripts.core.Action;
+import com.duelscripts.core.BodyPart;
+import com.duelscripts.scripting.CombatScript;
+import com.duelscripts.scripting.FighterContext;
 
 /**
  * An aggressive combat script that always strikes and targets high-damage body parts.

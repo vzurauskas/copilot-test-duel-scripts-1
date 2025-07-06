@@ -1,8 +1,8 @@
-# cpw-test-duel-scripts-1
+# copilot-test-duel-scripts-1
 Copilot Agent Test - Duel Scripts
 
 Take 1: Let the agent do the work with minimal interference:
 - No rules files.
 - No design step.
 - No TDD.
-- Minimal style adjustments.
+- No style adjustments.

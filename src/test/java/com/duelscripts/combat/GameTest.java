@@ -1,5 +1,9 @@
-package com.duelscripts;
+package com.duelscripts.combat;
 
+import com.duelscripts.core.Fighter;
+import com.duelscripts.core.Weapon;
+import com.duelscripts.scripting.CombatScript;
+import com.duelscripts.scripting.FighterContext;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

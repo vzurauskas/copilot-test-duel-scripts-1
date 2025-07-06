@@ -1,5 +1,8 @@
-package com.duelscripts;
+package com.duelscripts.scripting;
 
+import com.duelscripts.core.Fighter;
+import com.duelscripts.core.Weapon;
+import com.duelscripts.combat.TurnResult;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;

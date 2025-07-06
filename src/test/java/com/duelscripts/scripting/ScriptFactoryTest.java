@@ -1,5 +1,6 @@
-package com.duelscripts;
+package com.duelscripts.scripting;
 
+import com.duelscripts.scripting.scripts.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
